@@ -51,4 +51,3 @@ jobs:
         python -m flake8 backend/
         cd backend/
         python manage.py test
-
