@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-j_89af+30&&4qm*8z9_(^zz8p4-ho8z_m6ylm0s$h!-p@on1_^
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '188.243.253.7',  # ваш текущий IP
+    '89.169.166.181',  # ваш текущий IP
     'localhost',       # для локального доступа
     '127.0.0.1',       # альтернативный локальный адрес
     'backend',         # имя сервиса в Docker
