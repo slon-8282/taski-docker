@@ -8,10 +8,11 @@ SECRET_KEY = (
     'django-insecure-j_89af+30&&4qm*8z9_(^zz8p4-ho8z_m6ylm0s$h!-p@on1_^'
 )
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '89.169.166.181',  # ваш текущий IP
+    'taskshost.ddns.net',
     'localhost',       # для локального доступа
     '127.0.0.1',       # альтернативный локальный адрес
     'backend',         # имя сервиса в Docker
@@ -129,5 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-    'http://frontend:3000'
+    'http://frontend:3000',
+    'http://taskshost.ddns.net',
+    'https://taskshost.ddns.net'
 ]
