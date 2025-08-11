@@ -10,51 +10,24 @@ services:
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
 
   backend:
     build: ./backend/
     env_file: .env
     volumes:
-      - ./backend:/app
       - static:/backend_static
-    command: >
-      sh -c "python manage.py collectstatic --noinput &&
-             mkdir -p /backend_static/static/ &&
-             cp -r /app/collected_static/. /backend_static/static/ &&
-             gunicorn backend.wsgi:application --bind 0.0.0.0:8000"
-    depends_on:
-      db:
-        condition: service_healthy
 
   frontend:
     build: ./frontend/
     env_file: .env
+    command: cp -r /app/build/. /frontend_static/
     volumes:
-      - ./frontend:/app
       - static:/frontend_static
-    command: >
-      sh -c "npm run build &&
-             mkdir -p /frontend_static/ &&
-             cp -r /app/build/. /frontend_static/ &&
-             npm start"
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=development
 
   gateway:
     build: ./gateway/
-    ports:
-      - "8000:80"
+    env_file: .env
     volumes:
       - static:/staticfiles
-    depends_on:
-      - backend
-      - frontend
-    links:
-      - backend
+    ports:
+      - 8000:80
