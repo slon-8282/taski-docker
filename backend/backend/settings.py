@@ -12,7 +12,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     '89.169.166.181',  # ваш текущий IP
-    'taskshost.ddns.net',
+    'taskshost.servebeer.com',
     'localhost',       # для локального доступа
     '127.0.0.1',       # альтернативный локальный адрес
     'backend',         # имя сервиса в Docker
